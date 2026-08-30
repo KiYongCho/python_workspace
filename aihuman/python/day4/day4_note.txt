@@ -1,0 +1,23 @@
+[멤버십 연산자 in / not in]
+in : 특정 값이 문자열, 리스트 등의 데이터 안에 포함되어 있는지 검사
+not in : 특정 값이 포함되어 있지 않은지 검사
+role = "admin"
+if role in ["admin", "manager"]:
+    print("관리 메뉴 접근 가능")
+
+[연속 비교(Chained Comparison)]
+일반적인 비교 표현 : score >= 80 and score < 90
+연속 비교 표현 : 80 <= score < 90
+
+[단축 평가(Short-circuit Evaluation)]
+and : 앞 조건이 False이면 전체 결과가 False이므로 뒤 조건을 확인할 필요가 없음
+or : 앞 조건이 True이면 전체 결과가 True이므로 뒤 조건을 확인할 필요가 없음
+Python의 and와 or는 필요한 조건까지만 검사
+age = 17
+has_id = True
+if age >= 19 and has_id:
+    print("입장 가능")
+
+[조건 표현식(Conditional Expression)]
+조건 표현식 : 간단한 if / else를 한 줄로 표현
+result = "PASS" if score >= 60 else "RETRY"
