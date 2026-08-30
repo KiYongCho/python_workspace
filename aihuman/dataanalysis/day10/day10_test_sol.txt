@@ -1,0 +1,53 @@
+Day 10 단답형 테스트 풀이 - Pandas DataFrame 기초
+
+1. Pandas
+- 표 형태 데이터 분석을 위한 대표적인 Python 라이브러리이다.
+
+2. Series
+- 값과 인덱스를 가진 1차원 데이터 객체이다.
+
+3. DataFrame
+- 행과 열로 구성된 2차원 표 데이터 객체이다.
+
+4. Comma-Separated Values
+- 값을 일반적으로 쉼표로 구분해 저장하는 텍스트 데이터 형식이다.
+
+5. import pandas as pd
+
+6. pd.read_csv()
+- 예: df = pd.read_csv("students.csv")
+
+7. head()
+- 예: df.head()
+
+8. df.tail(3)
+
+9. shape
+- 예: df.shape
+
+10. columns
+- 예: df.columns
+
+11. dtypes
+- 예: df.dtypes
+
+12. info()
+- 예: df.info()
+
+13. describe()
+- 예: df.describe()
+
+14. Series
+- 한 개 컬럼을 선택하면 일반적으로 Series가 반환된다.
+
+15. DataFrame
+- 컬럼명 리스트를 이용해 여러 컬럼을 선택하면 DataFrame이 반환된다.
+
+16. value_counts()
+- 예: df["전공"].value_counts()
+
+17. nunique()
+- 예: df["전공"].nunique()
+
+18. info()는 정보를 화면에 직접 출력하고 반환값으로 None을 돌려주기 때문이다.
+- 따라서 보통 print(df.info())가 아니라 df.info()만 호출한다.
