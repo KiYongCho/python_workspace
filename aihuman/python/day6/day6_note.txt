@@ -1,0 +1,88 @@
+# 변수의 스코프 (scope)
+# - 스코프 : 변수를 참조(사용)할 수 있는 범위
+# - 파이썬은 전역(global) 스코프와 지역(local) 스코프를 사용
+# - 전역 스코프 : 함수 밖에서 정의해서 코드 어디에서나 참조 가능
+# - 지역 스코프 : 함수 내에서 정의해서 함수가 호출될때 메모리에 생성되고
+#                     함수가 리턴하면 메모리에서 사라짐, 함수 내에서 참조 가능
+# - 전역 스코프와 지역 스코프에 동일한 이름의 변수, 함수가 있다면
+#   지역 스코프에 있는 것이 우선함 (지역변수가 전역변수를 shadowing했다고 함)
+# - LEGB (Local, Enclosing, Global, Built-in)
+#   LEGB : 파이썬이 변수를 찾는 순서 (Local > Encosing > Global > Built-in)
+#   Local : 함수 내부
+#   Enclosing : 함수를 감싸고 있는 함수 내부 (파이썬 함수내에 함수를 정의하는게 가능)
+#   Global : 함수 외부
+#   Built-in : 파이썬이 제공하는 전역 함수 영역
+
+x = 100 # 전역 변수
+
+def outer(): # outer(enclosing) function
+    y = 200 # outer function의 지역 변수
+    def inner(): # inner(nested) function
+        z = 300 # inner function의 지역 변수
+        print(z)
+        print(y)
+        print(x)
+    inner()
+
+outer()
+
+# 클로져 (closure)
+# 외부 함수가 종료되면 외부 함수에서 정의한 변수가 메모리에서 사라져야 함
+# 외부 함수내에서 내부 함수를 정의하고 내부 함수가 외부 함수에서 정의한 변수를
+# 리턴하게 만들어서 외부 함수가 종료 되었음에서 외부함수에서 정의한 변수를
+# 계속 사용할 수가 있게됨 (또는 계속 사용할 수 있게 해주는 내부 함수)
+# 목적 : 함수 내부에 변수를 생성하고 외부에서 그 변수의 값을 임의 변경하는 것을 막을 의도
+#         => 캡슐화(Encapsulation) 또는 정보 은닉(information hiding)
+
+def outer():
+    x = 10
+    def inner():
+        print(x)
+    return inner
+
+outer()
+
+# 람다 함수 (lambda function)
+# - 이름이 없는 익명함수로 주로 일회성으로 기능을 생성해 사용할 목적으로 생성
+# - 문법 : lambda 파라미터리스트 : 리턴값
+# - 람다 함수는 값(리터럴)
+#   1) 다른 함수에 인자로 전달 가능
+#   2) 리스트의 요소나 딕셔너리의 값으로 사용 가능
+#   3) 함수의 리턴값으로 사용 가능
+
+# 익명의 람다함수를 생성해서 squarex변수가 가리키게 함
+# 람다 함수의 이름은 내부적으로 정해지고 개발자가 알지 못함
+squarex = lambda x : x**2
+print(squarex(5)) # 25
+
+# 람다함수를 사용해 리스트 정렬
+students  = [
+    ('철수', 85),
+    ('영희', 92),
+    ('민수', 78),
+    ('지영', 90)
+]
+students_asc = sorted(students, key=lambda x : x[1]) # 이터러블, 정렬기준
+print(students)
+print(students_asc)
+students_asc = sorted(students, key=lambda x : x[1], reverse=True) # reverse=True : 내림차순정렬
+print(students)
+print(students_asc)
+
+# 고차함수, 콜백함수
+# 고차함수(High-order function) : 함수를 인자로 전달 받거나, 함수를 리턴하는 함수
+# 콜백함수(Call-back function) : 함수에 인자로 전달되는 함수
+
+# map(람다함수, 이터러블) 고차함수 : 이터러블의 각 요소에 람다함수를 적용하는 함수
+# 고차함수: map, 콜백함수: 람다함수
+scores = [90, 85, 75]
+new_scores = list(map(lambda x : x+10, scores))
+print(new_scores)
+
+# 고차함수
+def calc(a, b, f): # 2개의 값, 1개의 함수
+    return f(a, b) # 2개의 값을 인자로하는 함수의 실행결과를 리턴
+print(calc(3, 5, lambda a, b: a + b))
+print(calc(3, 5, lambda a, b: a - b))
+print(calc(3, 5, lambda a, b: a * b))
+print(calc(3, 5, lambda a, b: a / b))
