@@ -1,0 +1,14 @@
+[콘솔 입출력]
+콘솔 (console) : 표준 입력장치 (키보드) + 표준 출력장치 (모니터)
+콘솔 입출력 : 키보드로 입력받아(input()) 모니터로 출력(print())
+
+[Blocking Function]
+함수가 기능을 모두 수행할때까지 다른 작업을 멈추는 함수
+IO(입출력)에 관계된 함수들이 많음
+input() : 사용자가 키보드 입력을 마치고 엔터를 칠때까지 블로킹
+
+[Truthy / Falsy]
+Truthy : True는 아니지만 True로 판별할 수 있는 것
+Falsy : False는 아니지만 False로 판별할 수 있는 것
+Falsy : False, None, 0, 0.0, 0j(복소수), "", '', [], (), {}, set(), range(0)
+위의 Falsy를 제외한 모든 것은 Truthy
